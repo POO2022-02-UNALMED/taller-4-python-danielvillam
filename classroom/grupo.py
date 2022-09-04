@@ -8,28 +8,20 @@ class Grupo:
     def __init__(self, grupo="grupo predeterminado", asignaturas=None, estudiantes=None):
         Grupo.asignarNombre("Grado 12")
         self._grupo = grupo
-        if(estudiantes != None):
-            self.listadoAlumnos=[]
-            self.listadoAlumnos.append(estudiantes)
-        else:
-            self.listadoAlumnos = []
-        if(asignaturas != None):
-            self._asignaturas=[]
-            self._asignaturas.append(asignaturas)
-        else:
-            self._asignaturas = []
+        self._asignaturas = asignaturas
+        self.listadoAlumnos = estudiantes
+        
 
     def listadoAsignaturas(self, **kwargs):
+        self._asignaturas=[]
         for x in kwargs.values():
             self._asignaturas.append(Asignatura(x))
 
     def agregarAlumno(self, alumno, lista=None):
         if(lista is None):
-            self.listadoAlumnos.append(alumno)
-        else:
-            for x in lista:
-                self.listadoAlumnos.append(x)
-            self.listadoAlumnos.append(alumno)
+            lista=[]
+        self.listadoAlumnos = [alumno]
+        self.listadoAlumnos = lista + self.listadoAlumnos
 
     @ classmethod
     def asignarNombre(cls, nombre="Grado 10"):
